@@ -49,11 +49,13 @@ def save_diary():
     profile_name = f'static/profile-{mytime}.{extension}'
     profile.save(profile_name)
     
+    time = today.strftime('%Y.%m.%d')
     doc = {
         'file': file_name,
         'profile': profile_name,
         'title': title_receive,
-        'content': content_receive  
+        'content': content_receive,
+        'time': time,
     }
     db.diary.insert_one(doc)
     return jsonify({'message' : 'data tersimpan'})
